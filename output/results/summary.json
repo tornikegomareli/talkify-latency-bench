@@ -1,0 +1,76 @@
+{
+  "baselineEngine": "Talkify",
+  "measuredTrials": 100,
+  "runs": [
+    {
+      "engine": "Talkify",
+      "version": "development",
+      "mode": "Apple SpeechAnalyzer",
+      "trigger": "Fn",
+      "trials": 20,
+      "minMilliseconds": 107.962001,
+      "medianMilliseconds": 122.740354,
+      "p95Milliseconds": 140.389646,
+      "maxMilliseconds": 141.36875,
+      "medianAccuracy": 1,
+      "exactTrials": 12,
+      "latencyMultipleVersusBaseline": 1
+    },
+    {
+      "engine": "superwhisper",
+      "version": "2.16.1",
+      "mode": "Standard EN local",
+      "trigger": "superwhisper menu",
+      "trials": 20,
+      "minMilliseconds": 186.788875,
+      "medianMilliseconds": 216.3717405,
+      "p95Milliseconds": 246.856584,
+      "maxMilliseconds": 254.48525,
+      "medianAccuracy": 1,
+      "exactTrials": 19,
+      "latencyMultipleVersusBaseline": 1.7628410986984768
+    },
+    {
+      "engine": "VoiceInk",
+      "version": "2.11",
+      "mode": "Parakeet V3 local",
+      "trigger": "⌥ Space",
+      "trials": 20,
+      "minMilliseconds": 308.302583,
+      "medianMilliseconds": 323.98388550000004,
+      "p95Milliseconds": 351.224271,
+      "maxMilliseconds": 374.832375,
+      "medianAccuracy": 1,
+      "exactTrials": 20,
+      "latencyMultipleVersusBaseline": 2.6395873479393748
+    },
+    {
+      "engine": "Wispr Flow",
+      "version": "1.6.492",
+      "mode": "Default",
+      "trigger": "Fn",
+      "trials": 20,
+      "minMilliseconds": 521.912313,
+      "medianMilliseconds": 586.5037295,
+      "p95Milliseconds": 692.53075,
+      "maxMilliseconds": 792.12175,
+      "medianAccuracy": 1,
+      "exactTrials": 19,
+      "latencyMultipleVersusBaseline": 4.7784099555391535
+    },
+    {
+      "engine": "MacWhisper",
+      "version": "14.7",
+      "mode": "Large v3 Turbo local",
+      "trigger": "Fn",
+      "trials": 20,
+      "minMilliseconds": 1109.549583,
+      "medianMilliseconds": 1148.8459375,
+      "p95Milliseconds": 1226.447458,
+      "maxMilliseconds": 1253.093584,
+      "medianAccuracy": 1,
+      "exactTrials": 17,
+      "latencyMultipleVersusBaseline": 9.359969236360522
+    }
+  ]
+}

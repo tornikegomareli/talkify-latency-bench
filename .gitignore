@@ -1,0 +1,6 @@
+.build/
+dist/
+.DS_Store
+*.profraw
+# raw per-engine screen recordings: large, and the composites are what matter
+output/raw/

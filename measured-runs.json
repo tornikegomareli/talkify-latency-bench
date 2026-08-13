@@ -1,0 +1,55 @@
+{
+  "baselineEngine": "Talkify",
+  "runs": [
+    {
+      "engine": "Talkify",
+      "engineVersion": "development",
+      "mode": "Apple SpeechAnalyzer",
+      "trigger": "Fn",
+      "phraseID": "neutral-01",
+      "firstTrial": 2,
+      "lastTrial": 21,
+      "expectedTrials": 20
+    },
+    {
+      "engine": "Wispr Flow",
+      "engineVersion": "1.6.492",
+      "mode": "Default",
+      "trigger": "Fn",
+      "phraseID": "neutral-01",
+      "firstTrial": 2,
+      "lastTrial": 21,
+      "expectedTrials": 20
+    },
+    {
+      "engine": "superwhisper",
+      "engineVersion": "2.16.1",
+      "mode": "Standard EN local",
+      "trigger": "superwhisper menu",
+      "phraseID": "neutral-01",
+      "firstTrial": 2,
+      "lastTrial": 21,
+      "expectedTrials": 20
+    },
+    {
+      "engine": "MacWhisper",
+      "engineVersion": "14.7",
+      "mode": "Large v3 Turbo local",
+      "trigger": "Fn",
+      "phraseID": "neutral-01",
+      "firstTrial": 2,
+      "lastTrial": 21,
+      "expectedTrials": 20
+    },
+    {
+      "engine": "VoiceInk",
+      "engineVersion": "2.11",
+      "mode": "Parakeet V3 local",
+      "trigger": "⌥ Space",
+      "phraseID": "neutral-01",
+      "firstTrial": 17,
+      "lastTrial": 36,
+      "expectedTrials": 20
+    }
+  ]
+}
