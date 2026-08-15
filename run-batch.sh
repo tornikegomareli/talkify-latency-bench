@@ -8,7 +8,7 @@ trigger="${2:-fn}"
 results_file="$HOME/Library/Application Support/TalkifyLatencyBench/results.json"
 
 if [[ ! "$trial_count" =~ '^[1-9][0-9]*$' ]]; then
-  print -u2 "Usage: ./run-batch.sh <trial-count> [fn|left-option|option-space|superwhisper-menu|spokenly-deeplink]"
+  print -u2 "Usage: ./run-batch.sh <trial-count> [fn|aqua-fn|left-option|option-space|superwhisper-menu|spokenly-deeplink]"
   exit 2
 fi
 
