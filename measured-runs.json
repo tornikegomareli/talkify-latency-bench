@@ -60,6 +60,18 @@
       "firstTrial": 3,
       "lastTrial": 22,
       "expectedTrials": 20
+    },
+    {
+      "engine": "Aqua Voice",
+      "engineVersion": "0.18.22",
+      "mode": "Avalon v1.1 cloud",
+      "trigger": "Fn",
+      "phraseID": "neutral-01",
+      "firstTrial": 2,
+      "lastTrial": 21,
+      "expectedTrials": 20,
+      "attemptedTrials": 21,
+      "noOutputAttempts": 1
     }
   ]
 }

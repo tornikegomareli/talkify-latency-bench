@@ -14,7 +14,7 @@ private enum DriverError: LocalizedError {
   var errorDescription: String? {
     switch self {
     case .invalidArguments:
-      "Usage: BenchmarkStimulus <audio-file> [fn|left-option|option-space|superwhisper-menu|spokenly-deeplink] [--arm]"
+      "Usage: BenchmarkStimulus <audio-file> [fn|aqua-fn|left-option|option-space|superwhisper-menu|spokenly-deeplink] [--arm]"
     case .missingAudioFile(let path):
       "Audio file does not exist: \(path)"
     case .missingClickDriver:
@@ -35,6 +35,7 @@ private enum DriverError: LocalizedError {
 
 private enum DriverMode: String {
   case function = "fn"
+  case aquaFunction = "aqua-fn"
   case leftOption = "left-option"
   case optionSpace = "option-space"
   case superwhisperMenu = "superwhisper-menu"
@@ -42,7 +43,7 @@ private enum DriverMode: String {
 
   var notificationValue: String {
     switch self {
-    case .function:
+    case .function, .aquaFunction:
       "Fn"
     case .leftOption:
       "Left ⌥"
@@ -66,7 +67,7 @@ private final class ShortcutDriver {
 
   func start(_ mode: DriverMode) throws -> UInt64 {
     switch mode {
-    case .function:
+    case .function, .aquaFunction:
       let instant = try runClickDriver(["kd:fn"])
       heldModifiers = ["fn"]
       return instant
@@ -85,7 +86,7 @@ private final class ShortcutDriver {
 
   func stop(_ mode: DriverMode) throws -> UInt64 {
     switch mode {
-    case .function:
+    case .function, .aquaFunction:
       let instant = try runClickDriver(["ku:fn"])
       heldModifiers = []
       return instant
@@ -300,7 +301,7 @@ do {
   }
   let pressInstant = try shortcutDriver.start(mode)
   post(edge: "pressed", trigger: mode, atNanoseconds: pressInstant)
-  if mode == .leftOption {
+  if mode == .leftOption || mode == .aquaFunction {
     Thread.sleep(forTimeInterval: 0.2)
     try unmuteOutput()
     Thread.sleep(forTimeInterval: 0.3)

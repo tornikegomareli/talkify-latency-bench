@@ -1,10 +1,10 @@
 # Results
 
-The first five engines were measured 13 August 2026. Spokenly was measured 15 August 2026 on the same MacBook Pro (M4 Max, macOS 26).
+The first five engines were measured 13 August 2026. Spokenly was measured 15 August. Aqua Voice was measured 15–16 August on the same MacBook Pro (M4 Max, macOS 26).
 
 Every engine ran the same phrase through the same harness, editor and clock: **"Fast speech to text should feel instant."**
 
-Each engine had one discarded warmup and 20 measured trials. The metric starts at the recording-end action and stops at final visible text.
+Each engine had one discarded warmup. Latency summaries use 20 saved trials per engine. The metric starts at the recording-end action and stops at final visible text.
 
 ## Latency
 
@@ -15,6 +15,7 @@ Each engine had one discarded warmup and 20 measured trials. The metric starts a
 | superwhisper 2.16.1 | Standard EN local | 216 ms | 247 ms | 187 ms | 254 ms | 1.8× |
 | VoiceInk 2.11 | Parakeet V3 local | 324 ms | 351 ms | 308 ms | 375 ms | 2.6× |
 | Wispr Flow 1.6.492 | Default (cloud) | 587 ms | 693 ms | 522 ms | 792 ms | 4.8× |
+| Aqua Voice 0.18.22 | Avalon v1.1 cloud | 630 ms | 872 ms | 485 ms | 1012 ms | 5.1× |
 | MacWhisper 14.7 | Large v3 Turbo local | 1149 ms | 1226 ms | 1110 ms | 1253 ms | 9.4× |
 
 Talkify's slowest trial (141 ms) is still faster than every other engine's fastest.
@@ -23,7 +24,7 @@ Spokenly placed second. Talkify's median was 66 ms lower. Spokenly produced an e
 
 ## Accuracy
 
-Median word error rate was **0.000 for all six engines**. Every median trial matched the phrase. Consistency differed:
+Median word error rate was **0.000 for all seven engines**. Every median trial matched the phrase. Consistency differed:
 
 | Engine | Trials below a perfect transcript | Worst transcript observed |
 |---|---:|---|
@@ -32,11 +33,14 @@ Median word error rate was **0.000 for all six engines**. Every median trial mat
 | superwhisper | 1 / 20 | "Ask speech to text should feel instant" |
 | VoiceInk | 0 / 20 | Perfect on every trial |
 | Wispr Flow | 1 / 20 | "That speech-to-text should be instant." |
+| Aqua Voice | 2 / 20 | "Yeah, I think we'll see." |
 | MacWhisper | 3 / 20 | "Delta Force. Delta Force." |
 
 **Talkify is the fastest engine here and the least consistent one.** It finalizes soonest, so it has less trailing audio for recognition. Version 1 also inserts raw recognized text with no cleanup pass.
 
 Spokenly and VoiceInk were flawless in this run. Spokenly had the better speed and accuracy balance at 189 ms.
+
+Aqua returned no text once during 21 measured attempts. The latency table uses its 20 saved results because absent text has no final-text timestamp. The failed attempt remains reported here and in `measured-runs.json`.
 
 ## What this measures, and what it does not
 
@@ -47,6 +51,7 @@ The stimulus plays through the Mac's speaker and is picked up by its microphone,
 - Wispr Flow is cloud-based, so its result depends on the network at the time of measurement.
 - Each engine used its best supported trigger. superwhisper used its menu because it ignored synthetic key events.
 - Spokenly used its documented start and stop deeplinks. The harness opened them in the background to preserve the focused editor.
+- Aqua used Fn. The driver unmuted the fixed stimulus after activation because Aqua mutes background audio while recording.
 - The raw data records the trigger for every trial.
 - Every other speech-to-text app was quit while an engine was under test.
 

@@ -24,7 +24,9 @@ final class LatencyBenchController {
   @ObservationIgnored private var completionTask: Task<Void, Never>?
   @ObservationIgnored private var stimulusTask: Task<Void, Never>?
 
-  let engines = ["Talkify", "Wispr Flow", "superwhisper", "MacWhisper", "VoiceInk", "Spokenly"]
+  let engines = [
+    "Talkify", "Wispr Flow", "superwhisper", "MacWhisper", "VoiceInk", "Spokenly", "Aqua Voice"
+  ]
 
   init() {
     do {
@@ -195,7 +197,8 @@ final class LatencyBenchController {
       "superwhisper": "/Applications/superwhisper.app",
       "MacWhisper": "/Applications/MacWhisper.app",
       "VoiceInk": "/Applications/VoiceInk.app",
-      "Spokenly": "/Applications/Spokenly.app"
+      "Spokenly": "/Applications/Spokenly.app",
+      "Aqua Voice": "/Applications/Aqua Voice.app"
     ]
     guard let path = paths[engine],
           let bundle = Bundle(path: path),
