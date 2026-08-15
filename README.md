@@ -5,8 +5,9 @@ recording-end action to visible text, using the same editor and the same clock
 for every speech-to-text app.
 
 **[Results](RESULTS.md): Talkify 123 ms · Spokenly 189 ms · superwhisper 216 ms ·
-VoiceInk 324 ms · Wispr Flow 587 ms · MacWhisper 1149 ms** (median of 20 trials
-each). Read the results for the accuracy trade-off and measurement limits.
+VoiceInk 324 ms · Wispr Flow 587 ms · Aqua Voice 630 ms · MacWhisper 1149 ms**
+(median of 20 saved trials each). Read the results for the accuracy trade-off
+and measurement limits.
 
 Built for [Talkify](https://github.com/tornikegomareli/Talkify), but the harness
 is engine-agnostic: add any app that types into the frontmost field.
@@ -28,6 +29,7 @@ The in-app button needs Accessibility access. Without it, run the driver from an
 
 ```sh
 ./run-stimulus.sh
+./run-stimulus.sh aqua-fn
 ./run-stimulus.sh left-option
 ./run-stimulus.sh option-space
 ./run-stimulus.sh superwhisper-menu
@@ -40,10 +42,14 @@ Use `spokenly-deeplink` for Spokenly. It calls the documented
 `spokenly://start` and `spokenly://stop` actions without changing the focused
 editor.
 
+Use `aqua-fn` for Aqua Voice. Aqua mutes background audio while recording, so
+this path unmutes the fixed stimulus after Fn activates Aqua.
+
 Run a measured batch after one discarded warmup:
 
 ```sh
 ./run-batch.sh 20 fn
+./run-batch.sh 20 aqua-fn
 ./run-batch.sh 20 left-option
 ./run-batch.sh 20 option-space
 ./run-batch.sh 20 superwhisper-menu

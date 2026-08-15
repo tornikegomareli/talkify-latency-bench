@@ -1,6 +1,6 @@
 {
   "baselineEngine": "Talkify",
-  "measuredTrials": 120,
+  "measuredTrials": 140,
   "runs": [
     {
       "engine": "Talkify",
@@ -71,6 +71,20 @@
       "medianAccuracy": 1,
       "exactTrials": 19,
       "latencyMultipleVersusBaseline": 4.7784099555391535
+    },
+    {
+      "engine": "Aqua Voice",
+      "version": "0.18.22",
+      "mode": "Avalon v1.1 cloud",
+      "trigger": "Fn",
+      "trials": 20,
+      "minMilliseconds": 485.25075,
+      "medianMilliseconds": 630.2333545,
+      "p95Milliseconds": 872.374584,
+      "maxMilliseconds": 1011.772771,
+      "medianAccuracy": 1,
+      "exactTrials": 18,
+      "latencyMultipleVersusBaseline": 5.134687443544443
     },
     {
       "engine": "MacWhisper",
