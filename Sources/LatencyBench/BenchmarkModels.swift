@@ -6,6 +6,7 @@ enum BenchmarkTrigger: String, CaseIterable, Codable, Identifiable, Sendable {
   case leftOption = "Left ⌥"
   case optionSpace = "⌥ Space"
   case superwhisperMenu = "superwhisper menu"
+  case spokenlyDeeplink = "Spokenly deeplink"
 
   var id: Self { self }
 
@@ -19,6 +20,8 @@ enum BenchmarkTrigger: String, CaseIterable, Codable, Identifiable, Sendable {
       "left-option"
     case .superwhisperMenu:
       "superwhisper-menu"
+    case .spokenlyDeeplink:
+      "spokenly-deeplink"
     case .f13:
       nil
     }

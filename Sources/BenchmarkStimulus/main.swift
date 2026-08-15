@@ -9,11 +9,12 @@ private enum DriverError: LocalizedError {
   case clickDriverFailed(Int32)
   case playbackFailed(Int32)
   case outputUnmuteFailed(Int32)
+  case spokenlyDeeplinkFailed(String)
 
   var errorDescription: String? {
     switch self {
     case .invalidArguments:
-      "Usage: BenchmarkStimulus <audio-file> [fn|left-option|option-space|superwhisper-menu] [--arm]"
+      "Usage: BenchmarkStimulus <audio-file> [fn|left-option|option-space|superwhisper-menu|spokenly-deeplink] [--arm]"
     case .missingAudioFile(let path):
       "Audio file does not exist: \(path)"
     case .missingClickDriver:
@@ -26,6 +27,8 @@ private enum DriverError: LocalizedError {
       "Audio playback failed with exit status \(status)."
     case .outputUnmuteFailed(let status):
       "Could not unmute benchmark audio; osascript exited with status \(status)."
+    case .spokenlyDeeplinkFailed(let action):
+      "Could not open spokenly://\(action)."
     }
   }
 }
@@ -35,6 +38,7 @@ private enum DriverMode: String {
   case leftOption = "left-option"
   case optionSpace = "option-space"
   case superwhisperMenu = "superwhisper-menu"
+  case spokenlyDeeplink = "spokenly-deeplink"
 
   var notificationValue: String {
     switch self {
@@ -46,6 +50,8 @@ private enum DriverMode: String {
       "⌥ Space"
     case .superwhisperMenu:
       "superwhisper menu"
+    case .spokenlyDeeplink:
+      "Spokenly deeplink"
     }
   }
 }
@@ -72,6 +78,8 @@ private final class ShortcutDriver {
       return try runClickDriver(["kd:alt", "kp:space", "ku:alt"])
     case .superwhisperMenu:
       return try runSuperwhisperMenuAction()
+    case .spokenlyDeeplink:
+      return try runSpokenlyDeeplink("start")
     }
   }
 
@@ -89,6 +97,8 @@ private final class ShortcutDriver {
       return try runClickDriver(["kd:alt", "kp:space", "ku:alt"])
     case .superwhisperMenu:
       return try runSuperwhisperMenuAction()
+    case .spokenlyDeeplink:
+      return try runSpokenlyDeeplink("stop")
     }
   }
 
@@ -132,6 +142,22 @@ private final class ShortcutDriver {
     let finished = DispatchTime.now().uptimeNanoseconds
     guard process.terminationStatus == 0 else {
       throw DriverError.clickDriverFailed(process.terminationStatus)
+    }
+    return started + ((finished - started) / 2)
+  }
+
+  private func runSpokenlyDeeplink(_ action: String) throws -> UInt64 {
+    let process = Process()
+    process.executableURL = URL(fileURLWithPath: "/usr/bin/open")
+    process.arguments = ["-g", "spokenly://\(action)"]
+    process.standardOutput = FileHandle.nullDevice
+    process.standardError = FileHandle.standardError
+    let started = DispatchTime.now().uptimeNanoseconds
+    try process.run()
+    process.waitUntilExit()
+    let finished = DispatchTime.now().uptimeNanoseconds
+    guard process.terminationStatus == 0 else {
+      throw DriverError.spokenlyDeeplinkFailed(action)
     }
     return started + ((finished - started) / 2)
   }

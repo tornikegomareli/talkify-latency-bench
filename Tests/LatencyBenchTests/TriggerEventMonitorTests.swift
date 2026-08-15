@@ -77,6 +77,24 @@ struct TriggerEventMonitorTests {
     #expect(event.uptimeNanoseconds == 126)
   }
 
+  @Test("Parses Spokenly deeplink driver notifications")
+  func parsesSpokenlyDeeplinkNotification() throws {
+    let notification = Notification(
+      name: Notification.Name("com.talkify.latency-bench.trigger"),
+      object: "BenchmarkStimulus",
+      userInfo: [
+        "trigger": "Spokenly deeplink",
+        "edge": "released",
+        "uptimeNanoseconds": NSNumber(value: UInt64(147))
+      ]
+    )
+
+    let event = try #require(TriggerEventMonitor.driverEvent(from: notification))
+    #expect(event.trigger == .spokenlyDeeplink)
+    #expect(event.edge == .released)
+    #expect(event.uptimeNanoseconds == 147)
+  }
+
   @Test("Rejects malformed driver notifications")
   func rejectsMalformedNotification() {
     let notification = Notification(

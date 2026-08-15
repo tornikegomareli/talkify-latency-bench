@@ -4,9 +4,9 @@ How long does dictation make you wait? This measures the time from the
 recording-end action to visible text, using the same editor and the same clock
 for every speech-to-text app.
 
-**[Results](RESULTS.md): Talkify 123 ms · superwhisper 216 ms · VoiceInk 324 ms ·
-Wispr Flow 587 ms · MacWhisper 1149 ms** (median of 20 trials each). Read the
-results for the accuracy trade-off and what the number does and does not cover.
+**[Results](RESULTS.md): Talkify 123 ms · Spokenly 189 ms · superwhisper 216 ms ·
+VoiceInk 324 ms · Wispr Flow 587 ms · MacWhisper 1149 ms** (median of 20 trials
+each). Read the results for the accuracy trade-off and measurement limits.
 
 Built for [Talkify](https://github.com/tornikegomareli/Talkify), but the harness
 is engine-agnostic: add any app that types into the frontmost field.
@@ -31,9 +31,14 @@ The in-app button needs Accessibility access. Without it, run the driver from an
 ./run-stimulus.sh left-option
 ./run-stimulus.sh option-space
 ./run-stimulus.sh superwhisper-menu
+./run-stimulus.sh spokenly-deeplink
 ```
 
 Use `superwhisper-menu` when superwhisper ignores synthetic keyboard events. The recorded trigger identifies this method in exported data.
+
+Use `spokenly-deeplink` for Spokenly. It calls the documented
+`spokenly://start` and `spokenly://stop` actions without changing the focused
+editor.
 
 Run a measured batch after one discarded warmup:
 
@@ -42,6 +47,7 @@ Run a measured batch after one discarded warmup:
 ./run-batch.sh 20 left-option
 ./run-batch.sh 20 option-space
 ./run-batch.sh 20 superwhisper-menu
+./run-batch.sh 20 spokenly-deeplink
 ```
 
 Record the measured trial range in `measured-runs.json`. Then export only those
