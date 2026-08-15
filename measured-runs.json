@@ -50,6 +50,16 @@
       "firstTrial": 17,
       "lastTrial": 36,
       "expectedTrials": 20
+    },
+    {
+      "engine": "Spokenly",
+      "engineVersion": "2.27.16",
+      "mode": "Parakeet TDT 0.6B V3 local",
+      "trigger": "Spokenly deeplink",
+      "phraseID": "neutral-01",
+      "firstTrial": 3,
+      "lastTrial": 22,
+      "expectedTrials": 20
     }
   ]
 }

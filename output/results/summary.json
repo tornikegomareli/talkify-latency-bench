@@ -1,6 +1,6 @@
 {
   "baselineEngine": "Talkify",
-  "measuredTrials": 100,
+  "measuredTrials": 120,
   "runs": [
     {
       "engine": "Talkify",
@@ -15,6 +15,20 @@
       "medianAccuracy": 1,
       "exactTrials": 12,
       "latencyMultipleVersusBaseline": 1
+    },
+    {
+      "engine": "Spokenly",
+      "version": "2.27.16",
+      "mode": "Parakeet TDT 0.6B V3 local",
+      "trigger": "Spokenly deeplink",
+      "trials": 20,
+      "minMilliseconds": 156.31298,
+      "medianMilliseconds": 189.38429200000002,
+      "p95Milliseconds": 209.322354,
+      "maxMilliseconds": 215.304583,
+      "medianAccuracy": 1,
+      "exactTrials": 20,
+      "latencyMultipleVersusBaseline": 1.5429668061736241
     },
     {
       "engine": "superwhisper",
